@@ -23,6 +23,7 @@ El laboratorio se ha desplegado en un entorno virtualizado utilizando **GNS3**, 
 * **Segmento de Red:** `10.12.50.0/24`
 * **Gateway (Víctima DoS):** Router Cisco (`10.12.50.1`)
 * **Atacante:** Kali Linux (`eth0`)
+* **Victima:** Vpcs (`e0`)
 
 | Dispositivo | Rol | Estado Inicial |
 | :--- | :--- | :--- |
