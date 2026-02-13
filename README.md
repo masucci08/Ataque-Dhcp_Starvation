@@ -42,43 +42,37 @@ El script utiliza la librería **Scapy** para la inyección de paquetes en capa 
 * **Interfaz de Inyección:** `eth0`
 * **Generación de MAC:** Función `RandMAC()` para aleatoriedad criptográfica.
 * **Estructura del Paquete:**
-    # Configuración de Scapy
-conf.checkIPaddr = False
-fake_mac = RandMAC()
-xid_random = random.randint(1, 900000000)
-src = fake_mac                    
-dst = "ff:ff:ff:ff:ff:ff"        
-src = "0.0.0.0"                
-dst = "255.255.255.255"          
-sport = 68                       
-dport = 67                        
-chaddr = fake_mac                 
-xid = xid_random                
-options = [
-    ("message-type", "discover"),  
-    "end"                         
-]
-pkt = pkt                        
-iface = "eth0"                   
-verbose = 0                      
+  
+            conf.checkIPaddr = False
+            fake_mac = RandMAC()
+            xid_random = random.randint(1, 900000000)
+            src = fake_mac                    
+            dst = "ff:ff:ff:ff:ff:ff"        
+            src = "0.0.0.0"                
+            dst = "255.255.255.255"          
+            sport = 68                       
+            dport = 67                        
+            chaddr = fake_mac                 
+            xid = xid_random
+              
+            options = [
+                ("message-type", "discover"),  
+                "end"                         
+            ]
+  
+            pkt = pkt                        
+            iface = "eth0"                   
+            verbose = 0
+  
+                     
 
-## Evidencia de Ejecución
-## 1-
-<img width="467" height="279" alt="tabla cdpvacia" src="https://github.com/user-attachments/assets/aa6fdd03-2f98-47c9-b43a-0c7aa154e9a6" />
-
-
-
-
-## 2-
-<img width="301" height="241" alt="ejecucion scapy" src="https://github.com/user-attachments/assets/1c044ad6-b447-467f-96b8-23d58dcd8e87" />
+## Evidencias de Ejecución
+## 1- Agotando las Ips en el pool de dhcp 
+<img width="890" height="404" alt="image" src="https://github.com/user-attachments/assets/86fb7352-0354-4177-988e-f8099528b6fe" />
 
 
-
-
-
-## 3-
-<img width="459" height="272" alt="tabla cdlfull" src="https://github.com/user-attachments/assets/5518d5ea-19b6-4283-950f-017930def08e" />
-
+## 2- Fallo de asignacion de Ip a la maquina victima
+<img width="960" height="368" alt="image" src="https://github.com/user-attachments/assets/29ab0df0-eaca-41c1-9753-c64aa12d5967" />
 
 
 
@@ -90,8 +84,10 @@ Tener python3 instalado en la maquina atacante
 
 
 ### Medidas de Mitigación
-Para proteger la infraestructura contra estos vectores de ataque, se recomiendan las siguientes configuraciones de endurecimiento (Hardening):
+Para prevenir este ataque, se debe configurar **Port Security** en los switches de acceso para limitar el número de direcciones MAC permitidas por puerto.
 
- ```bash
-Desabilitar Cdp con el comando en el modo global:
-### *NO CDP RUN*
+```bash
+interface range e0/x-x
+switchport port-security
+switchport port-security maximum 2
+switchport port-security violation restrict
