@@ -29,6 +29,7 @@ El laboratorio se ha desplegado en un entorno virtualizado utilizando **GNS3**, 
 | **Router Gateway** | Servidor DHCP | Pool activo (254 IPs libres) |
 | **Switch L2** | Infraestructura | Sin seguridad |
 | **Kali Linux** | Atacante | Generador de tráfico |
+| **Vpcs** | Victima | solicitante |
 
 
 ### Objetivo del Script
