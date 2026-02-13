@@ -83,6 +83,8 @@ El script utiliza la librería **Scapy** para la inyección de paquetes en capa 
 
 ### Requisitos para utilizar la herramienta.
 Tener python3 instalado en la maquina atacante
+Librería 
+Permisos de Superusuario (Root)
 
 
 ### Medidas de Mitigación
