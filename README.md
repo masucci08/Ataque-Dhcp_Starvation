@@ -26,8 +26,8 @@ El laboratorio se ha desplegado en un entorno virtualizado utilizando **GNS3**, 
 
 | Dispositivo | Rol | Estado Inicial |
 | :--- | :--- | :--- |
-| **Router Gateway** | Servidor DHCP | Pool activo (~250 IPs libres) |
-| **Switch L2** | Infraestructura | Puertos de acceso sin seguridad |
+| **Router Gateway** | Servidor DHCP | Pool activo (254 IPs libres) |
+| **Switch L2** | Infraestructura | Sin seguridad |
 | **Kali Linux** | Atacante | Generador de tráfico |
 
 
