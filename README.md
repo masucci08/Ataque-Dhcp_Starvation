@@ -42,11 +42,25 @@ El script utiliza la librería **Scapy** para la inyección de paquetes en capa 
 * **Interfaz de Inyección:** `eth0`
 * **Generación de MAC:** Función `RandMAC()` para aleatoriedad criptográfica.
 * **Estructura del Paquete:**
-    * `Ethernet`: Src=Random / Dst=Broadcast (`ff:ff:ff:ff:ff:ff`)
-    * `IP`: Src=`0.0.0.0` / Dst=`255.255.255.255`
-    * `UDP`: Sport=68 / Dport=67
-    * `BOOTP`: Client Hardware Address (chaddr) aleatorio.
-    * `DHCP Options`: Message-Type = `Discover`.
+    # Configuración de Scapy
+conf.checkIPaddr = False
+fake_mac = RandMAC()
+xid_random = random.randint(1, 900000000)
+src = fake_mac                    
+dst = "ff:ff:ff:ff:ff:ff"        
+src = "0.0.0.0"                
+dst = "255.255.255.255"          
+sport = 68                       
+dport = 67                        
+chaddr = fake_mac                 
+xid = xid_random                
+options = [
+    ("message-type", "discover"),  
+    "end"                         
+]
+pkt = pkt                        
+iface = "eth0"                   
+verbose = 0                      
 
 ## Evidencia de Ejecución
 ## 1-
